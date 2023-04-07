@@ -31,3 +31,6 @@ build/
 .mvn/
 ### VS Code ###
 .vscode/
+
+### React ###
+node_modules/
