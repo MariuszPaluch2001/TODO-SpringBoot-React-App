@@ -14,13 +14,15 @@ public class TodoRepository {
     JdbcTemplate jdbcTemplate;
 
     public List<Todo> getAll(){
-        return jdbcTemplate.query("SELECT id, task_name, description, is_finished FROM to_do",
+        return jdbcTemplate.query(
+                "SELECT id, task_name, description, is_finished FROM to_do",
                 BeanPropertyRowMapper.newInstance(Todo.class));
     }
 
     public Todo getById(int id){
-        return jdbcTemplate.queryForObject("SELECT id, task_name, description, is_finished FROM to_do WHERE " +
-                "id = ?", BeanPropertyRowMapper.newInstance(Todo.class), id);
+        return jdbcTemplate.queryForObject(
+                "SELECT id, task_name, description, is_finished FROM to_do WHERE id=?",
+                BeanPropertyRowMapper.newInstance(Todo.class), id);
     }
 
     public int save(List<Todo> todos){
@@ -38,7 +40,9 @@ public class TodoRepository {
     }
 
     public int delete(int id){
-        return jdbcTemplate.update("DELETE FROM to_do WHERE id=?", id);
+        return jdbcTemplate.update(
+                "DELETE FROM to_do WHERE id=?",
+                id);
     }
 
 }

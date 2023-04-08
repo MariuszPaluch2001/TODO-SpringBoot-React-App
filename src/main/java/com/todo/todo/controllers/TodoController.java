@@ -15,57 +15,72 @@ public class TodoController {
     TodoRepository todoRepository;
 
     @GetMapping("")
-    public List<Todo> getAll(){
-        return todoRepository.getAll();
+    public ResponseEntity<List<Todo>> getAll(){
+        return ResponseEntity.ok()
+                .body(todoRepository.getAll());
     }
 
     @GetMapping("/{id}")
-    public Todo getById(@PathVariable("id") int id){
-        return todoRepository.getById(id);
+    public ResponseEntity<Todo> getById(@PathVariable("id") int id){
+        return ResponseEntity.ok()
+                .body(todoRepository.getById(id));
     }
 
     @PostMapping("")
-    public int add(@RequestBody List<Todo> todos){
-        return todoRepository.save(todos);
+    public ResponseEntity<Integer> add(@RequestBody List<Todo> todos){
+        if (todoRepository.save(todos) == 0)
+            return ResponseEntity.ok().body(todos.size());
+
+        return ResponseEntity.badRequest()
+                .body(0);
     }
 
     @PutMapping("/{id}")
-    public int update(@PathVariable("id") int id, @RequestBody Todo updatedMovie){
+    public ResponseEntity<String> update(@PathVariable("id") int id, @RequestBody Todo updatedTodo){
         Todo todo = todoRepository.getById(id);
 
         if (todo == null)
-            return 204;
+            return ResponseEntity.noContent()
+                    .build();
 
-        todo.setTask_name(updatedMovie.getTask_name());
-        todo.setDescription(updatedMovie.getDescription());
-        todo.setIs_finished(updatedMovie.getIs_finished());
+        todo.setTask_name(updatedTodo.getTask_name());
+        todo.setDescription(updatedTodo.getDescription());
+        todo.setIs_finished(updatedTodo.getIs_finished());
 
         todoRepository.update(todo);
 
-        return 200;
+        return ResponseEntity.ok()
+                .body("Item updated");
     }
 
     @PatchMapping("/{id}")
-    public int partiallyUpdate(@PathVariable("id") int id, @RequestBody Todo updatedMovie){
+    public ResponseEntity<String> partiallyUpdate(@PathVariable("id") int id, @RequestBody Todo updatedTodo){
         Todo todo = todoRepository.getById(id);
 
         if (todo == null)
-            return 204;
+            return ResponseEntity.noContent()
+                    .build();
 
-        if(updatedMovie.getTask_name() != null && !updatedMovie.getTask_name().isEmpty())
-            todo.setTask_name(updatedMovie.getTask_name());
-        if(updatedMovie.getDescription() != null && !updatedMovie.getDescription().isEmpty())
-            todo.setDescription(updatedMovie.getDescription());
-        if(updatedMovie.getIs_finished() != null)
-            todo.setIs_finished(updatedMovie.getIs_finished());
+        if(updatedTodo.getTask_name() != null && !updatedTodo.getTask_name().isEmpty())
+            todo.setTask_name(updatedTodo.getTask_name());
+        if(updatedTodo.getDescription() != null && !updatedTodo.getDescription().isEmpty())
+            todo.setDescription(updatedTodo.getDescription());
+        if(updatedTodo.getIs_finished() != null)
+            todo.setIs_finished(updatedTodo.getIs_finished());
 
         todoRepository.update(todo);
 
-        return 200;
+        return ResponseEntity.ok()
+                .body("Item updated");
     }
 
     @DeleteMapping("/{id}")
-    public int delete(@PathVariable("id") int id){
-        return todoRepository.delete(id);
+    public ResponseEntity<String> delete(@PathVariable("id") int id){
+        if (todoRepository.delete(id) == 1)
+            return ResponseEntity.ok()
+                    .body("Item deleted");
+
+        return ResponseEntity.badRequest()
+                .body("Item not deleted");
     }
 }
