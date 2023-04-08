@@ -30,4 +30,8 @@ public class TodoRepository {
         return 0;
     }
 
+    public int delete(int id){
+        return jdbcTemplate.update("DELETE FROM to_do WHERE id=?", id);
+    }
+
 }

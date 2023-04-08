@@ -24,8 +24,14 @@ public class TodoController {
     public Todo getById(@PathVariable("id") int id){
         return todoRepository.getById(id);
     }
+
     @PostMapping("")
     public int add(@RequestBody List<Todo> todos){
         return todoRepository.save(todos);
+    }
+
+    @DeleteMapping("/{id}")
+    public int delete(@PathVariable("id") int id){
+        return todoRepository.delete(id);
     }
 }
