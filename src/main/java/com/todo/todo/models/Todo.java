@@ -11,5 +11,5 @@ public class Todo {
     private int id;
     private String task_name;
     private String description;
-    private boolean is_finished;
+    private Boolean is_finished;
 }

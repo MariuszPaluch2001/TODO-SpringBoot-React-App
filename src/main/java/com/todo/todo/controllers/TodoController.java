@@ -1,6 +1,7 @@
 package com.todo.todo.controllers;
 
 import com.todo.todo.models.Todo;
+import com.todo.todo.repositories.TodoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -11,20 +12,17 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/todo")
 public class TodoController {
-//    @Autowired
-//    MovieRepository movieRepository;
+    @Autowired
+    TodoRepository todoRepository;
 
     @GetMapping("")
     public List<Todo> getAll(){
-        return new ArrayList<Todo>(Arrays.asList(
-                new Todo(1,"task1", "description", false),
-                new Todo(2,"task2", "description", true))
-        );
+        return todoRepository.getAll();
     }
 
     @GetMapping("/{id}")
     public Todo getById(@PathVariable("id") int id){
-        return new Todo(1,"task1", "description", false);
+        return todoRepository.getById(id);
     }
 
 }
