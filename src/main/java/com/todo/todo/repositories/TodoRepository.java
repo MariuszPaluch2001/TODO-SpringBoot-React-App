@@ -30,6 +30,13 @@ public class TodoRepository {
         return 0;
     }
 
+    public int update(Todo todo){
+        return jdbcTemplate.update(
+                "UPDATE to_do SET task_name=?, description=?, is_finished=? WHERE id=?",
+                todo.getTask_name(), todo.getDescription(), todo.getIs_finished(), todo.getId()
+        );
+    }
+
     public int delete(int id){
         return jdbcTemplate.update("DELETE FROM to_do WHERE id=?", id);
     }
