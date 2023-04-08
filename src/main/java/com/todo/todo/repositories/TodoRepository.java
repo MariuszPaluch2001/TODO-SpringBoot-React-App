@@ -23,4 +23,11 @@ public class TodoRepository {
                 "id = ?", BeanPropertyRowMapper.newInstance(Todo.class), id);
     }
 
+    public int save(List<Todo> todos){
+        todos.forEach(movie -> jdbcTemplate.update(
+                "INSERT INTO to_do(task_name,description,is_finished) VALUES(?,?,?)",
+                movie.getTask_name(),movie.getDescription(), movie.getIs_finished()));
+        return 0;
+    }
+
 }
