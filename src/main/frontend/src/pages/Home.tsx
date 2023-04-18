@@ -1,7 +1,8 @@
 import './App.css';
 import BoxComponent from '../compontents/TodoBox';
+import React from 'react';
 
-export default function Home() {
+export default function Home(){
   return (
     <div>
       <div className='header-center-div'>

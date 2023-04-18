@@ -5,6 +5,8 @@ import Home from './Home';
 import ListTodo from './ListTodo';
 import AddTodo from './AddTodo';
 import SetCheckTodo from '../SetCheckTodo';
+import 'bootstrap/dist/css/bootstrap.css';
+import 'bootstrap/dist/js/bootstrap.js';
 
 export default function App() {
     return (
