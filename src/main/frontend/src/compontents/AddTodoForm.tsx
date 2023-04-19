@@ -42,12 +42,12 @@ export default function AddTodoForm() {
       <br/>
       <Form.Group className="mb-3" controlId="taskname">
         <Form.Label>Task name</Form.Label>
-        <Form.Control type="text" name="task_name" placeholder="Enter task name" onChange={handleChange} />
+        <Form.Control type="text" value={state.task_name} name="task_name" placeholder="Enter task name" onChange={handleChange} />
       </Form.Group>
       <br/>
       <Form.Group className="mb-3" controlId="description">
         <Form.Label>Task description</Form.Label>
-        <Form.Control as="textarea" name="description" rows={3} onChange={handleChange} />
+        <Form.Control as="textarea" value={state.description} name="description" rows={3} onChange={handleChange} />
       </Form.Group>
       <Button variant="primary" type="submit">
         Submit

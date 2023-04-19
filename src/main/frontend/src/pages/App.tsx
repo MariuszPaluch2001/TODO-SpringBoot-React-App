@@ -4,7 +4,7 @@ import {BrowserRouter, Routes, Route} from "react-router-dom";
 import Home from './Home';
 import ListTodo from './ListTodo';
 import AddTodo from './AddTodo';
-import SetCheckTodo from '../SetCheckTodo';
+import SetCheckTodo from './SetCheckTodo';
 import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap/dist/js/bootstrap.js';
 

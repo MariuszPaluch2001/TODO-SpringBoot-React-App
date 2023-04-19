@@ -20,6 +20,12 @@ public class TodoController {
                 .body(todoRepository.getAll());
     }
 
+    @GetMapping("/notFinished")
+    public ResponseEntity<List<Todo>> getNotFinished(){
+        return ResponseEntity.ok()
+                .body(todoRepository.getNotFinished());
+    }
+
     @GetMapping("/{id}")
     public ResponseEntity<Todo> getById(@PathVariable("id") int id){
         return ResponseEntity.ok()

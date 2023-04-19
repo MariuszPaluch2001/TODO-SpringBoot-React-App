@@ -19,6 +19,12 @@ public class TodoRepository {
                 BeanPropertyRowMapper.newInstance(Todo.class));
     }
 
+    public List<Todo> getNotFinished(){
+        return jdbcTemplate.query(
+                "SELECT id, task_name, description, is_finished FROM to_do WHERE is_finished=0",
+                BeanPropertyRowMapper.newInstance(Todo.class));
+    }
+
     public Todo getById(int id){
         return jdbcTemplate.queryForObject(
                 "SELECT id, task_name, description, is_finished FROM to_do WHERE id=?",
