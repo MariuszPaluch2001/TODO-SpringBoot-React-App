@@ -1,6 +1,7 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState} from 'react';
 import axios from 'axios';
 import Table from 'react-bootstrap/Table';
+import { Checkbox } from '@mui/material';
 
 interface Todo_I{
   id : number,
@@ -22,25 +23,32 @@ export default function ListTodo() {
   },[])
  
     return (
-      <Table>
-        <thead>
-          <tr>
-            <th>ID</th>
-            <th>Name</th>
-            <th>Rating</th>
-          </tr>
-        </thead>
-        <tbody>
-          {
-            todos.map(movie =>
-                <tr>
-                  <td>{movie.id}</td>
-                  <td>{movie.task_name}</td>
-                  <td>{movie.description}</td>
-                </tr>
-              )
-          }
-        </tbody>
-      </Table>
+      <div>
+        <h1>Todo list</h1>
+        <div className='table-div'>
+          <Table>
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Rating</th>
+                <th>Is finished</th>
+              </tr>
+            </thead>
+            <tbody>
+              {
+                todos.map(movie =>
+                    <tr>
+                      <td>{movie.id}</td>
+                      <td>{movie.task_name}</td>
+                      <td>{movie.description}</td>
+                      <td><Checkbox checked={movie.is_finished} disabled={true}/></td>
+                    </tr>
+                  )
+              }
+            </tbody>
+          </Table>
+        </div>
+      </div>
     )
 }
