@@ -27,9 +27,9 @@ public class TodoController {
     }
 
     @PostMapping("")
-    public ResponseEntity<Integer> add(@RequestBody List<Todo> todos){
-        if (todoRepository.save(todos) == 0)
-            return ResponseEntity.ok().body(todos.size());
+    public ResponseEntity<Integer> add(@RequestBody List<Todo> todo){
+        if (todoRepository.save(todo) == 0)
+            return ResponseEntity.ok().body(todo.size());
 
         return ResponseEntity.badRequest()
                 .body(0);

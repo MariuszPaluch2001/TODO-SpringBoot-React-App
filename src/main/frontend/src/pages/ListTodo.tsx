@@ -24,7 +24,7 @@ export default function ListTodo() {
  
     return (
       <div>
-        <h1>Todo list</h1>
+        <h1 className="header">Todo list</h1>
         <div className='table-div'>
           <Table>
             <thead>
