@@ -4,7 +4,7 @@ import React from 'react';
 
 export default function Home(){
   return (
-    <div>
+    <div className='menu-page'>
       <div className='header-center-div'>
         <h1>Welcome in my own TODO app!</h1>
       </div>
